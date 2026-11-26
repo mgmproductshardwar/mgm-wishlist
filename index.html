@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MGM PRODUCTS Wishlist</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;padding:15px;background:#500605;color:#fffaf1;font-family:Arial,sans-serif}
+button,a{cursor:pointer}
+.add-btn{background:#d8b56d;color:#250b0b;border:0;border-radius:7px;padding:12px 20px;font-size:15px;font-weight:bold}
+.add-btn:hover{background:#f1d99d}
+#products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.item{background:#1d090d;border:1px solid #8c663c;border-radius:10px;padding:12px}
+.item img{width:100%;height:190px;object-fit:contain;background:#fff;border-radius:6px}
+.item h3{font-size:16px;line-height:1.4}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.actions button,.actions a{padding:9px 12px;border:0;border-radius:5px;text-decoration:none;font-size:13px}
+.view{background:#d8b56d;color:#250b0b}
+.remove{background:#8c2424;color:white}
+.whatsapp{background:#168b48;color:white}
+h2{color:#f1d99d}
+.empty{text-align:center;padding:30px 10px;color:#f1d99d}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+const STORAGE_KEY = "mgm_products_wishlist";
+const params = new URLSearchParams(location.search);
+const mode = params.get("mode") || "wishlist";
+
+function getItems(){
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  } catch(e) {
+    return [];
+  }
+}
+
+function saveItems(items){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+}
+
+function addProduct(product){
+  const items = getItems();
+  if(!items.some(p => p.id === product.id)){
+    items.push(product);
+    saveItems(items);
+  }
+}
+
+function renderButton(){
+  const product = {
+    id: params.get("id") || "",
+    name: params.get("name") || "MGM Product",
+    image: params.get("image") || "",
+    link: params.get("link") || "https://sites.google.com/view/mgmproducts"
+  };
+
+  if(!product.id){
+    document.getElementById("app").textContent = "Product ID is missing.";
+    return;
+  }
+
+  const added = getItems().some(p => p.id === product.id);
+  document.getElementById("app").innerHTML =
+    `<button class="add-btn" id="addButton">${added ? "♥ Added to Wishlist" : "♡ Add to Wishlist"}</button>`;
+
+  document.getElementById("addButton").addEventListener("click", function(){
+    addProduct(product);
+    this.textContent = "♥ Added to Wishlist";
+  });
+}
+
+function renderWishlist(){
+  const app = document.getElementById("app");
+  const items = getItems();
+
+  if(items.length === 0){
+    app.innerHTML = '<h2>♥ My Wishlist</h2><div class="empty">Your wishlist is empty.<br>Explore our products and add your favourites!</div>';
+    return;
+  }
+
+  app.innerHTML = '<h2>♥ My Wishlist</h2><div id="products"></div>';
+  const container = document.getElementById("products");
+
+  items.forEach(product => {
+    const card = document.createElement("div");
+    card.className = "item";
+
+    const img = document.createElement("img");
+    img.src = product.image;
+    img.alt = product.name;
+    img.onerror = () => { img.style.display = "none"; };
+
+    const name = document.createElement("h3");
+    name.textContent = product.name;
+
+    const actions = document.createElement("div");
+    actions.className = "actions";
+
+    const view = document.createElement("a");
+    view.className = "view";
+    view.textContent = "View Product";
+    view.href = product.link;
+    view.target = "_blank";
+    view.rel = "noopener";
+
+    const remove = document.createElement("button");
+    remove.className = "remove";
+    remove.textContent = "Remove";
+    remove.addEventListener("click", () => {
+      saveItems(getItems().filter(p => p.id !== product.id));
+      renderWishlist();
+    });
+
+    const whatsapp = document.createElement("a");
+    whatsapp.className = "whatsapp";
+    whatsapp.textContent = "WhatsApp Enquiry";
+    whatsapp.href = "https://wa.me/918393900333?text=" +
+      encodeURIComponent("Hello MGM PRODUCTS, I am interested in: " + product.name);
+    whatsapp.target = "_blank";
+    whatsapp.rel = "noopener";
+
+    actions.append(view, remove, whatsapp);
+    card.append(img, name, actions);
+    container.appendChild(card);
+  });
+}
+
+if(mode === "button"){
+  renderButton();
+} else {
+  renderWishlist();
+  window.addEventListener("storage", event => {
+    if(event.key === STORAGE_KEY) renderWishlist();
+  });
+}
+</script>
+</body>
+</html>
