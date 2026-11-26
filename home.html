@@ -1,0 +1,451 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MGM PRODUCTS | Your Creative Partner</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --maroon:#500605;
+  --deep:#12090b;
+  --gold:#d8b56d;
+  --lightgold:#f1d99d;
+  --cream:#fffaf1;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--deep);
+  color:var(--cream);
+  font-family:'Montserrat',sans-serif;
+}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer}
+.topbar{
+  background:var(--maroon);
+  text-align:center;
+  padding:10px;
+  color:var(--lightgold);
+  font-size:10px;
+  letter-spacing:2px;
+}
+header{
+  padding:20px 6%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  border-bottom:1px solid #d8b56d30;
+  background:#12090bf5;
+}
+.logo{
+  color:var(--gold);
+  font-family:'Cormorant Garamond',serif;
+  font-size:36px;
+  font-weight:700;
+  letter-spacing:3px;
+}
+.logo small{
+  display:block;
+  font:10px 'Montserrat',sans-serif;
+  letter-spacing:4px;
+  text-align:center;
+  color:var(--cream);
+  margin-top:-4px;
+}
+nav{display:flex;gap:25px;align-items:center;flex-wrap:wrap}
+nav a{
+  font-size:11px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:#fffaf1;
+}
+nav a:hover{color:var(--gold)}
+.nav-button,.gold-button{
+  display:inline-block;
+  background:linear-gradient(135deg,#f1d99d,#c49a4c);
+  color:#24100b;
+  padding:13px 23px;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  border:0;
+}
+.hero{
+  min-height:570px;
+  display:flex;
+  align-items:center;
+  padding:80px 9%;
+  background:
+    radial-gradient(ellipse at 80% 45%,#8b321d55,transparent 48%),
+    linear-gradient(110deg,#12090b 15%,#500605 100%);
+  position:relative;
+  overflow:hidden;
+}
+.hero:after{
+  content:"";
+  position:absolute;
+  width:360px;height:360px;
+  border:1px solid #d8b56d55;
+  border-radius:50%;
+  right:8%;top:18%;
+  box-shadow:0 0 0 18px #d8b56d0a,0 0 0 38px #d8b56d0a;
+}
+.hero-content{max-width:650px;position:relative;z-index:1}
+.eyebrow{
+  color:var(--gold);
+  font-size:11px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  margin-bottom:22px;
+}
+h1,h2,h3{
+  font-family:'Cormorant Garamond',serif;
+  font-weight:500;
+}
+.hero h1{
+  font-size:clamp(48px,7vw,86px);
+  line-height:.98;
+  margin-bottom:24px;
+}
+.hero h1 span{color:var(--lightgold);font-style:italic}
+.hero p{
+  color:#e8d9c8;
+  font-size:13px;
+  line-height:2;
+  max-width:480px;
+  margin-bottom:32px;
+}
+.outline-button{
+  display:inline-block;
+  border:1px solid var(--gold);
+  color:var(--lightgold);
+  padding:13px 23px;
+  margin-left:10px;
+  font-size:10px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+}
+.section{padding:85px 7%}
+.section-heading{text-align:center;margin-bottom:45px}
+.section-heading .eyebrow{margin-bottom:12px}
+.section-heading h2{
+  font-size:clamp(36px,5vw,54px);
+  color:var(--lightgold);
+}
+.section-heading p{
+  color:#c8b9a9;
+  font-size:12px;
+  margin-top:12px;
+  line-height:1.8;
+}
+.categories{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+.category{
+  min-height:230px;
+  border:1px solid #d8b56d55;
+  padding:28px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 75% 25%,#b88b4c35,transparent 45%),
+    linear-gradient(145deg,#500605,#1c0b0c);
+  transition:.3s;
+}
+.category:before{
+  content:"";
+  position:absolute;
+  width:130px;height:130px;
+  border:1px solid #d8b56d50;
+  transform:rotate(45deg);
+  right:-30px;top:-30px;
+}
+.category:hover{
+  transform:translateY(-5px);
+  border-color:var(--lightgold);
+}
+.category .number{
+  color:var(--gold);
+  font-size:11px;
+  letter-spacing:2px;
+  margin-bottom:10px;
+}
+.category h3{font-size:30px;color:var(--cream)}
+.category p{font-size:10px;color:#d9c7b4;margin-top:8px}
+.featured{
+  background:#1b0b0d;
+}
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+.product-placeholder{
+  min-height:250px;
+  background:linear-gradient(145deg,#500605,#241012);
+  border:1px solid #d8b56d44;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:25px;
+  color:var(--gold);
+  font-family:'Cormorant Garamond',serif;
+  font-size:25px;
+}
+.product-caption{
+  padding:17px 5px 25px;
+  text-align:center;
+}
+.product-caption h3{font-size:24px;color:var(--lightgold)}
+.product-caption p{font-size:10px;color:#c8b9a9;margin-top:7px}
+.split{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
+  align-items:center;
+}
+.story-panel{
+  border:1px solid #d8b56d66;
+  padding:50px;
+  background:linear-gradient(145deg,#500605,#1a0a0c);
+}
+.story-panel h2{
+  font-size:45px;
+  color:var(--lightgold);
+  margin-bottom:20px;
+}
+.story-panel p{
+  font-size:12px;
+  color:#e3d4c4;
+  line-height:2;
+  margin-bottom:25px;
+}
+.benefits{display:grid;gap:25px}
+.benefit{border-bottom:1px solid #d8b56d40;padding-bottom:18px}
+.benefit h3{font-size:27px;color:var(--gold);margin-bottom:7px}
+.benefit p{font-size:11px;color:#c8b9a9;line-height:1.8}
+.cta{
+  text-align:center;
+  padding:85px 8%;
+  background:linear-gradient(110deg,#500605,#210c0d);
+  border-top:1px solid #d8b56d55;
+  border-bottom:1px solid #d8b56d55;
+}
+.cta h2{font-size:clamp(38px,5vw,58px);color:var(--lightgold)}
+.cta p{font-size:12px;color:#eadbca;line-height:2;margin:15px auto 28px;max-width:550px}
+footer{padding:45px 7%;background:#0c0708}
+.footer-inner{
+  display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;
+}
+footer h3{color:var(--gold);font-size:27px;margin-bottom:12px}
+footer p,footer a{font-size:11px;color:#c9b9a9;line-height:2}
+.footer-links{display:grid;gap:5px}
+.copyright{
+  border-top:1px solid #d8b56d33;
+  margin-top:30px;padding-top:20px;
+  color:#9c897a;font-size:10px;text-align:center;
+}
+@media(max-width:800px){
+  header{flex-direction:column}
+  nav{justify-content:center;gap:15px}
+  .hero{min-height:510px;padding:65px 7%}
+  .hero:after{right:-180px}
+  .categories,.product-grid{grid-template-columns:repeat(2,1fr)}
+  .split{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+  .categories,.product-grid{grid-template-columns:1fr}
+  .category{min-height:190px}
+  .hero .outline-button{margin:12px 0 0}
+  .section{padding:65px 6%}
+  .story-panel{padding:30px}
+}
+</style>
+</head>
+
+<body>
+<div class="topbar">
+  A CREATIVE WORLD OF MDF ART • WHOLESALE & RETAIL
+</div>
+
+<header>
+  <a href="#home" class="logo">
+    MGM
+    <small>PRODUCTS</small>
+  </a>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#categories">Categories</a>
+    <a href="#featured">Products</a>
+    <a href="#about">About Us</a>
+    <a href="#contact">Contact</a>
+    <a href="https://mgmproductshardwar.github.io/mgm-wishlist/?mode=wishlist">♡ Wishlist</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="eyebrow">Welcome to MGM PRODUCTS</div>
+    <h1>Crafting Ideas.<br><span>Creating Beauty.</span></h1>
+    <p>
+      Discover a world of creative MDF products, artistic decor
+      and inspiring craft essentials. Thoughtfully curated for
+      creators, businesses and homes.
+    </p>
+    <a class="gold-button" href="#categories">Explore Collection</a>
+    <a class="outline-button" href="https://wa.me/918393900333?text=Hello%20MGM%20PRODUCTS%2C%20I%20would%20like%20to%20enquire.">Enquire on WhatsApp</a>
+  </div>
+</section>
+
+<section class="section" id="categories">
+  <div class="section-heading">
+    <div class="eyebrow">Explore our world</div>
+    <h2>Shop by Category</h2>
+    <p>Find inspiration for every creative idea and every beautiful space.</p>
+  </div>
+
+  <div class="categories">
+    <a class="category" href="#featured">
+      <div class="number">01 / COLLECTION</div>
+      <h3>Lippan Art</h3>
+      <p>Creative surfaces for artistic expression</p>
+    </a>
+    <a class="category" href="#featured">
+      <div class="number">02 / COLLECTION</div>
+      <h3>Wall Decor</h3>
+      <p>Make your walls tell a beautiful story</p>
+    </a>
+    <a class="category" href="#featured">
+      <div class="number">03 / COLLECTION</div>
+      <h3>Fridge Magnets</h3>
+      <p>Small details with a special charm</p>
+    </a>
+    <a class="category" href="#featured">
+      <div class="number">04 / COLLECTION</div>
+      <h3>Key Holders</h3>
+      <p>Functional ideas with creative style</p>
+    </a>
+    <a class="category" href="#featured">
+      <div class="number">05 / COLLECTION</div>
+      <h3>Jharokha</h3>
+      <p>Traditional inspiration for modern spaces</p>
+    </a>
+    <a class="category" href="#featured">
+      <div class="number">06 / COLLECTION</div>
+      <h3>Tea Light Holders</h3>
+      <p>Add warmth to your creative projects</p>
+    </a>
+  </div>
+</section>
+
+<section class="section featured" id="featured">
+  <div class="section-heading">
+    <div class="eyebrow">Made for your creativity</div>
+    <h2>Featured Collection</h2>
+    <p>A glimpse into the creative possibilities at MGM PRODUCTS.</p>
+  </div>
+
+  <div class="product-grid">
+    <div>
+      <div class="product-placeholder">Your Product Image</div>
+      <div class="product-caption">
+        <h3>Creative MDF Collection</h3>
+        <p>Made for your next creative idea</p>
+      </div>
+    </div>
+    <div>
+      <div class="product-placeholder">Your Product Image</div>
+      <div class="product-caption">
+        <h3>Decorative Art Collection</h3>
+        <p>Bring your artistic vision to life</p>
+      </div>
+    </div>
+    <div>
+      <div class="product-placeholder">Your Product Image</div>
+      <div class="product-caption">
+        <h3>DIY Craft Essentials</h3>
+        <p>Inspiration begins with creativity</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="split">
+    <div class="story-panel">
+      <div class="eyebrow">The MGM experience</div>
+      <h2>Your Creative Partner</h2>
+      <p>
+        At MGM PRODUCTS, we believe every creative idea deserves
+        the right beginning. Explore an inspiring range of MDF
+        products and craft essentials for makers, artists,
+        businesses and creative minds.
+      </p>
+      <a class="gold-button" href="https://sites.google.com/view/mgmproducts">Discover MGM PRODUCTS</a>
+    </div>
+    <div class="benefits">
+      <div class="benefit">
+        <h3>For Every Creator</h3>
+        <p>Products and possibilities for artists, DIY enthusiasts and creative businesses.</p>
+      </div>
+      <div class="benefit">
+        <h3>Wholesale & Retail</h3>
+        <p>Explore our collection whether you need individual pieces or larger quantities.</p>
+      </div>
+      <div class="benefit">
+        <h3>Creative Possibilities</h3>
+        <p>Start with an idea and make it your own with MGM PRODUCTS.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="eyebrow">Let's create something beautiful</div>
+  <h2>Have a Creative Idea?</h2>
+  <p>
+    Looking for products, bulk quantities or a creative collaboration?
+    Connect with MGM PRODUCTS. We would love to hear from you.
+  </p>
+  <a class="gold-button" href="https://wa.me/918393900333?text=Hello%20MGM%20PRODUCTS%2C%20I%20would%20like%20to%20enquire.">Chat on WhatsApp</a>
+</section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <h3>MGM PRODUCTS</h3>
+      <p>Your Creative Partner</p>
+      <p>Haridwar, Uttarakhand, India</p>
+    </div>
+    <div class="footer-links">
+      <h3>Explore</h3>
+      <a href="#categories">Our Categories</a>
+      <a href="#featured">Featured Collection</a>
+      <a href="https://mgmproductshardwar.github.io/mgm-wishlist/?mode=wishlist">My Wishlist</a>
+    </div>
+    <div class="footer-links">
+      <h3>Connect</h3>
+      <a href="https://wa.me/918393900333">WhatsApp: +91 83939 00333</a>
+      <a href="https://www.instagram.com/mgmproducts/">Instagram</a>
+      <a href="https://sites.google.com/view/mgmproducts">Website</a>
+    </div>
+  </div>
+  <div class="copyright">
+    © 2026 MGM PRODUCTS. All Rights Reserved. | Your Creative Partner
+  </div>
+</footer>
+</body>
+</html>
